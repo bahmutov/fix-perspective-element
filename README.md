@@ -54,7 +54,69 @@ In the image above I marked two posters that show the perspective distortion in 
 
 Can we restore a quad to appear like a rectangle again? Yes, and very easily. We just need
 to measure the coordinates of 4 quad corners, then select how we want to map them. For example
-we can take the pixel coordinates of the "Cognac Monet" poster in the image 
+we can take the pixel coordinates of the "Cognac Monet" poster in the image (from top left and
+clockwise)
+
+    corner         |  x    y
+    ---------------------------
+    top left       | 470  175
+    top right      | 555  130
+    bottom right   | 560  345
+    bottom left    | 473  345
+
+From an image we cannot compute the true real world size of the poster, so we can be free
+to map it to any pixel dimensions. Let us assume that the poster is twice as tall as it is wide,
+and we want it to be 100 by 200 pixels. We can easily compute the matrix that maps the corners
+to the target coordinates
+
+    corner         |  x    y  |  target  x    y 
+    --------------------------------------------
+    top left       | 470  175 |          0    0
+    top right      | 555  130 |        100    0
+    bottom right   | 560  345 |        100  200
+    bottom left    | 473  345 |          0  200
+
+Plug this into a call to [fix-perspective]() to get the transform
+function and matrix H.
+
+```js
+var from = [{
+  x: 470,
+  y: 175,
+}, {
+  x: 555,
+  y: 130
+}, {
+  x: 560,
+  y: 345
+}, {
+  x: 473,
+  y: 345
+}];
+var to = [{
+  x: 0,
+  y: 0,
+}, {
+  x: 100,
+  y: 0
+}, {
+  x: 100,
+  y: 200
+}, {
+  x: 0,
+  y: 200
+}];
+var compute = require('fix-perspective');
+var transform = compute(from, to);
+// transform is a function from original image pixels (x, y) 
+// to the poster (0,0) - (100,0) - (100,200) - (0,200) pixels
+// transform.H is 4x4 matrix
+```
+
+The transform function will move and stretch the original image so that the poster
+quad maps to the 100x200 rectangle with the top left corner positioned at the origin.
+Everything else from the original image will stretch *around* the rectangle. We can
+clip the areas of the image outside the 100x200 rectangle to hide it, since it will look very weird.
 
 ### Small print
 
