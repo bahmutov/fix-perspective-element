@@ -1,0 +1,38 @@
+{
+  "name": "fix-perspective-element",
+  "version": "1.0.0",
+  "description": "Applies perspective fix transformation to DOM elements",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -R spec src/*-spec.js",
+    "watch": "npm test -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bahmutov/fix-perspective-element.git"
+  },
+  "keywords": [
+    "perspective",
+    "correction",
+    "projection",
+    "matrix"
+  ],
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahmutov/fix-perspective-element/issues"
+  },
+  "homepage": "https://github.com/bahmutov/fix-perspective-element",
+  "devDependencies": {
+    "check-more-types": "1.8.2",
+    "lazy-ass": "0.5.8",
+    "mocha": "2.2.5",
+    "pre-git": "0.6.2"
+  },
+  "dependencies": {
+  },
+  "pre-commit": [
+    "npm test",
+    "npm version"
+  ]
+}
