@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <title>fix-perspective-element</title>
   <script src="dist/fix-perspective-element.js"></script>
 </head>
 <body>
   <h1>Fix perspective element demo</h1>
-
+  <script>
+  if (typeof fixPerspectiveElement !== 'function') {
+    throw new Error('Cannot find fixPerspectiveElement function');
+  }
+  </script>
 </body>
 </html>

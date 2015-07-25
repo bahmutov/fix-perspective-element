@@ -25,7 +25,11 @@ Based on the following sources:
 
 Given transformation matrix (one can compute it from 4 points using 
 [fix-perspective](https://github.com/bahmutov/fix-perspective)), transforms desired element to remove perspective
-distortion.
+distortion. See [index.html](index.html) for a demo.
+
+    <script src="dist/fix-perspective-element.js"></script>
+    <script>
+    </script>
 
 ### Small print
 
