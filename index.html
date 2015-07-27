@@ -3,17 +3,33 @@
 <head>
   <meta charset="utf-8">
   <title>fix-perspective-element</title>
+  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="dist/fix-perspective-element.js"></script>
 </head>
 <body>
   <h1>Fix perspective element demo</h1>
 
-  <img src="images/room-marked.jpg" id="sourceImage" />
+  <img width="800" height="600" src="images/room-marked.jpg" id="sourceImage" />
+  <br />
+  <div id="clipper"
+    style="overflow:hidden;display:inline-block;vertical-align:top;line-height:0;">
+    <img width="800" height="600" src="images/room-marked.jpg" id="posterImage" />
+  </div>
 
   <script>
   if (typeof fixPerspectiveElement !== 'function') {
     throw new Error('Cannot find fixPerspectiveElement function');
   }
+  // poster transform computed using
+  // https://github.com/bahmutov/fix-perspective
+  var H = [ [ -25.200633090552348,
+    0.44471705453915905,
+    0,
+    11766.472068015251 ],
+  [ -3.99974913038564, -7.5550816907284295, 0, 3202.0213871587257 ],
+  [ 0, 0, 1, 0 ],
+  [ -0.006666248550642733, -0.000021651189094600296, 0, 1 ] ];
+  fixPerspectiveElement(document.getElementById('posterImage'), H);
   </script>
 </body>
 </html>
