@@ -14,12 +14,10 @@ function undistortElement(element, matrix) {
   res.push(res2);
   res.push(res3);
 
-  // TODO remove jQuery dependency
-  $(element).css({
-    'transform': "matrix3d(" + res.join(',') + ")",
-    '-webkit-transform': "matrix3d(" + res.join(',') + ")",
-    'transform-origin': '0 0'
-  });
+  element.style.transform = "matrix3d(" + res.join(',') + ")";
+  element.style['-webkit-transform'] = "matrix3d(" + res.join(',') + ")";
+  element.style['transform-origin'] = '0 0';
+  
 }
 
 module.exports = undistortElement;
